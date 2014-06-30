@@ -1,0 +1,29 @@
+<%= form_for(@lover) do |f| %>
+  <% if @lover.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@lover.errors.count, "error") %> prohibited this lover from being saved:</h2>
+
+      <ul>
+      <% @lover.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :secret_answer %><br>
+    <%= f.text_field :secret_answer %>
+  </div>
+  <div class="field">
+    <%= f.label :secret_question %><br>
+    <%= f.text_field :secret_question %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

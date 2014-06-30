@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @lover.name %>
+</p>
+
+<p>
+  <strong>Secret answer:</strong>
+  <%= @lover.secret_answer %>
+</p>
+
+<p>
+  <strong>Secret question:</strong>
+  <%= @lover.secret_question %>
+</p>
+
+<%= link_to 'Edit', edit_lover_path(@lover) %> |
+<%= link_to 'Back', lovers_path %>
