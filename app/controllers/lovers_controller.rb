@@ -1,5 +1,6 @@
 class LoversController < ApplicationController
   before_action :set_lover, only: [:show, :edit, :update, :destroy]
+  before_filter :authenticate!
 
   # GET /lovers
   # GET /lovers.json

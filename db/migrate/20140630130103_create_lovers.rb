@@ -4,6 +4,8 @@ class CreateLovers < ActiveRecord::Migration
       t.string :name
       t.string :secret_answer
       t.string :secret_question
+      t.string :provider
+      t.string :uid
       t.references :lover, index: true
       t.timestamps
     end
