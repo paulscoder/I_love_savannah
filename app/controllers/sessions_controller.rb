@@ -1,6 +1,6 @@
 class SessionsController < ApplicationController
   def create
-    user = Lover.check_from_omniauth(env["omniauth.auth"])
+    user = Lover.register_from_omniauth(env["omniauth.auth"])
     if user
       session[:user_id] = user.id
       flash[:notice] = "Signed In"
