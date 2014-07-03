@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
   def authenticate!
     if session[:user_id].nil?
       session[:request_url] = request.url if request.get?
-      redirect_to '/auth/github'
+      redirect_to '/auth/google_oauth2'
     end
   end
 
