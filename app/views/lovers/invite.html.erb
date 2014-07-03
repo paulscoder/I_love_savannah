@@ -1,0 +1,5 @@
+<%= form_tag(lover_partner_path(current_user), method: "post") do %>
+  <%= label_tag(:invitee, "Email:") %>
+  <%= text_field_tag(:invitee) %>
+  <%= submit_tag("Invite") %>
+<% end %>

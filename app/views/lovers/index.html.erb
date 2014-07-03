@@ -11,19 +11,28 @@
   </thead>
 
   <tbody>
-    <% @lovers.each do |lover| %>
+    <tr>
+      <td><%= @lover.name %></td>
+      <td><%= @lover.secret_answer %></td>
+      <td><%= @lover.secret_question %></td>
+      <td><%= link_to 'Show', @lover %></td>
+      <td><%= link_to 'Edit', edit_lover_path(@lover) %></td>
+    </tr>
+    <% if @lover.partner.name.nil? %>
       <tr>
-        <td><%= lover.name %></td>
-        <td><%= lover.secret_answer %></td>
-        <td><%= lover.secret_question %></td>
-        <td><%= link_to 'Show', lover %></td>
-        <td><%= link_to 'Edit', edit_lover_path(lover) %></td>
-        <td><%= link_to 'Destroy', lover, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td>No Partner</td>
+        <td></td>
+        <td></td>
+        <td><%= link_to 'Invite', lover_invite_path(@lover) %></td>
+      </tr>
+    <% else %>
+      <tr>
+        <td><%= @lover.partner.name %></td>
+        <td><%= @lover.partner.secret_answer %></td>
+        <td><%= @lover.partner.secret_question %></td>
+        <td><%= link_to 'Show', lover_path(@lover.partner) %></td>
+        <td><%= link_to 'Seperate', lover_seperate_partners_path(@lover.partner) %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
-
-<br>
-
-<%= link_to 'New Lover', new_lover_path %>

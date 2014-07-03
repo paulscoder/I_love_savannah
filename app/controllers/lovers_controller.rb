@@ -5,7 +5,7 @@ class LoversController < ApplicationController
   # GET /lovers
   # GET /lovers.json
   def index
-    @lovers = Lover.all
+    @lover = current_user
   end
 
   # GET /lovers/1
@@ -20,6 +20,39 @@ class LoversController < ApplicationController
 
   # GET /lovers/1/edit
   def edit
+  end
+
+  def invite
+  end
+
+  def join_partners
+    lover = Lover.find params['lover_id']
+    invitee = current_user
+    if lover.partner.name.nil? && invitee.partner.name.nil?
+      lover.partner, invitee.partner = invitee, lover
+      lover.save
+      invitee.save
+      redirect_to lovers_path
+    else
+      render 'partner_failed'
+    end
+  end
+
+  def seperate_partners
+    lover = Lover.find params['lover_id']
+    invitee = current_user
+    if lover.partner == invitee && invitee.partner == lover
+      lover.partner, invitee.partner = nil, nil
+      lover.save
+      invitee.save
+      redirect_to lovers_path
+    else
+      render 'partner_failed'
+    end
+  end
+
+  def partner
+    InviteMailer.lover_email(params['lover_id'], params['invitee']).deliver
   end
 
   # POST /lovers
